@@ -33,12 +33,4 @@ resource "google_compute_subnetwork" "CSC" {
     ipv6_access_type = each.value.ipv6_access_type
     external_ipv6_prefix = each.value.external_ipv6_prefix
     project = each.value.target_project
-
-
-
-
-
-
-
-
 }
