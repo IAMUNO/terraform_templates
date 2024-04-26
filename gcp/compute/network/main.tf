@@ -9,4 +9,4 @@ resource "google_compute_network" "CSC" {
     network_firewall_policy_enforcement_order = each.value.network_firewall_policy_enforcement_order
     project = each.value.project_id
     delete_default_routes_on_create = each.value.delete_default_routes_on_create
-}
+    }
