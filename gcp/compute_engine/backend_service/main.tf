@@ -41,8 +41,6 @@ resource "google_compute_backend_service" "CSC" {
     }
     cdn_policy {
         cache_key_policy {
-            include_host = 
-          
         }
         signed_url_cache_max_age_sec = cdn_policy.value.signed_url_cache_max_age_sec
         default_ttl = cdn_policy.value.default_ttl
