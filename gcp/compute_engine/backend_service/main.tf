@@ -47,16 +47,19 @@ resource "google_compute_backend_service" "CSC" {
             include_http_headers = each.value.cdn_policy.include_http_headers
             include_named_cookies = each.value.cdn_policy.include_named_cookies
         }
-        signed_url_cache_max_age_sec = cdn_policy.value.signed_url_cache_max_age_sec
-        default_ttl = cdn_policy.value.default_ttl
-        max_ttl = cdn_policy.value.max_ttl
-        client_ttl = cdn_policy.value.client_ttl
-        negative_caching = cdn_policy.value.negative_caching
-        negative_caching_policy { }
-        cache_mode = cdn_policy.value.cache_mode # USE_ORIGIN_HEADERS, FORCE_CACHE_ALL, CACHE_ALL_STATIC
-        serve_while_stale = cdn_policy.value.serve_while_stale
+        signed_url_cache_max_age_sec = each.value.cdn_policy.signed_url_cache_max_age_sec
+        default_ttl = each.value.cdn_policy.default_ttl
+        max_ttl = each.value.cdn_policy.max_ttl
+        client_ttl = each.value.cdn_policy.client_ttl
+        negative_caching = each.value.cdn_policy.negative_caching
+        negative_caching_policy {
+            code = each.value.cdn_policy.negative_caching_policy_code
+            ttl = each.value.cdn_policy.negative_caching_policy_ttl
+        }
+        cache_mode = each.value.cdn_policy.cache_mode # USE_ORIGIN_HEADERS, FORCE_CACHE_ALL, CACHE_ALL_STATIC
+        serve_while_stale = each.value.cdn_policy.serve_while_stale
         bypass_cache_on_request_headers {
-            header_name = cdn_policy.value.header_name
+            header_name = each.value.cdn_policy.header_name
         }
     }
     connection_draining_timeout_sec = each.value.connection_draining_timeout_sec

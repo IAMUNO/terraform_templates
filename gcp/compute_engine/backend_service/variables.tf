@@ -32,8 +32,32 @@ variable "compute_backend_service" {
             minimum_ring_size = string # op
         })
         cdn_policy = object({
-           = 
+            include_host = bool
+            include_protocol = bool
+            include_query_string = bool
+            query_string_blacklist = list(string)
+            query_string_whitelist = list(string)
+            include_host_blacklist = bool
+            include_named_cookies = bool
+            signed_url_cache_max_age_seconds = string
+            default_ttl = string
+            max_ttl = string
+            client_ttl = string
+            negative_caching = string
+            negative_caching_policy_code = string
+            negative_caching_policy_ttl = string
+            cache_mode = string
+            serve_while_stale = string
+            header_name = string
         })
+        connection_draining_timeout_secs = string
+        custom_request_headers = list(string)
+        custom_response_headers = list(string)
+        enable_cdn_cache = bool
+        health_checks = list(string)
+
+        
+
 
 
 
